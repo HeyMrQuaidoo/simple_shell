@@ -41,7 +41,7 @@ int exec_cmd(char **args)
 /**
  * run_exit_checker - Checks if shell should exit
  * @prompt_text: command line arguments
- * 
+ *
  * Return: exits shell
  **/
 void run_exit_checker(char *prompt_text)
@@ -53,7 +53,7 @@ void run_exit_checker(char *prompt_text)
 /**
  * run_check_cmd_exists - Check if command exists in path
  * @cmd: command line arguments
- * 
+ *
  * Return: Returns 1 if command not found else 0
  **/
 int run_check_cmd_exists(char **cmd)
@@ -71,11 +71,11 @@ int run_check_cmd_exists(char **cmd)
 /**
  * runner - Runs shell commands
  * @cmd: command line arguments
- * 
+ *
  * Return: nothing
  **/
- void runner(char **cmd)
- {
+void runner(char **cmd)
+{
 	char *param = (*(cmd + 1));
 	char *argv[4];
 
@@ -86,6 +86,6 @@ int run_check_cmd_exists(char **cmd)
 
 	if (execve(argv[0], argv, NULL) == -1)
 	{
-		perror("Error executing command"); 
+		perror("Error executing command");
 	}
 }

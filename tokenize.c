@@ -25,8 +25,8 @@ char *read_prompt(void)
 			exit(1);
 		}
 	}
-	
-	return line;
+
+	return (line);
 }
 
 /**
@@ -40,7 +40,7 @@ char **tokenize(char *readline)
 	int position = 0;
 	char *get_token;
 	int buffer_size = TOKEN_BUFFER_SIZE;
-	char **tokens = malloc(buffer_size * sizeof(char*));
+	char **tokens = malloc(buffer_size * sizeof(char *));
 
 	check_alloc_error(tokens);
 	get_token = strtok(readline, TOKEN_DELIMITER);
@@ -49,13 +49,14 @@ char **tokenize(char *readline)
 	{
 		tokens[position] = get_token;
 		position++;
-		
+
 		tokens = check_realloc(position, buffer_size, tokens);
 		get_token = strtok(NULL, TOKEN_DELIMITER);
 	}
+
 	tokens[position] = NULL;
-	return tokens;
-} 
+	return (tokens);
+}
 
 /**
  * check_realloc - Check if reallocation of mem is needed
@@ -67,9 +68,10 @@ char **tokenize(char *readline)
  **/
 char **check_realloc(int position, int buffer_size, char **tokens)
 {
-	if (position >= buffer_size) {
+	if (position >= buffer_size)
+	{
 		buffer_size += TOKEN_BUFFER_SIZE;
-		tokens = realloc(tokens, buffer_size * sizeof(char*));
+		tokens = realloc(tokens, buffer_size * sizeof(char *));
 		check_alloc_error(tokens);
 	}
 
@@ -79,12 +81,13 @@ char **check_realloc(int position, int buffer_size, char **tokens)
 /**
  * check_alloc_error - Check if there was an error in allocating token mem
  * @token: current token string
- * 
+ *
  * Return: Failure if there was an allocation error. Exits shell
  **/
 void check_alloc_error(char **token)
 {
-	if (!token) {
+	if (!token)
+	{
 		fprintf(stderr, "Failed to allocate memory!\n");
 		exit(EXIT_FAILURE);
 	}

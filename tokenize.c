@@ -10,19 +10,19 @@
  **/
 char *read_prompt(void)
 {
-    char *line = NULL;
-    size_t bufsize = 0;
-    
-    if (getline(&line, &bufsize, stdin) == -1)
-    {
-        if (feof(stdin))
-        {
-            exit(EXIT_SUCCESS);
+	char *line = NULL;
+	size_t bufsize = 0;
+
+	if (getline(&line, &bufsize, stdin) == -1)
+	{
+		if (feof(stdin))
+		{
+			exit(0);
         }
         else
         {
             perror("Failed to read prompt line");
-            exit(EXIT_FAILURE);
+            exit(1);
         }
     }
     

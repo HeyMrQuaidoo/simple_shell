@@ -57,6 +57,7 @@ int _strcmp(char *s1, char *s2)
 {
 	int flag = 0;
 	int s1_len, s2_len;
+
 	s1_len = _strlen(s1);
 	s2_len = _strlen(s2);
 
@@ -67,7 +68,8 @@ int _strcmp(char *s1, char *s2)
 
 	while (*s2 != '\0' && *s1 != '\0')
 	{
-		if (*s1 != *s2){
+		if (*s1 != *s2)
+		{
 			flag = 1;
 			break;
 		}

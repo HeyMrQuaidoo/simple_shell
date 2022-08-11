@@ -8,33 +8,33 @@
  **/
 int exec_cmd(char **args)
 {
-    pid_t child_pid;
-    int status;
+	pid_t child_pid;
+	int status;
 
-    if (args[0] == NULL)
-    {
-        return (1);
-    }
+	if (args[0] == NULL)
+	{
+		return (1);
+	}
 
-    run_exit_checker(args[0]);
+	run_exit_checker(args[0]);
 
-    if (run_check_cmd_exists(args)){
-        child_pid = fork();
+	if (run_check_cmd_exists(args)){
+		child_pid = fork();
 
-        if (child_pid < 0)
-            perror("Error creating child fork");
+		if (child_pid < 0)
+			perror("Error creating child fork");
 
-        if (child_pid == 0)
-        {
-            runner(args);
-        }
-        else
-        {
-            wait(&status);
-        }
-    }
+		if (child_pid == 0)
+		{
+			runner(args);
+		}
+		else
+		{
+			wait(&status);
+		}
+	}
 
-    return (status);
+	return (status);
 }
 
 /**
@@ -45,8 +45,8 @@ int exec_cmd(char **args)
  **/
 void run_exit_checker(char *prompt_text)
 {
-    if (_strcmp(prompt_text, "exit") == 0)
-        exit(0);
+	if (_strcmp(prompt_text, "exit") == 0)
+		exit(0);
 }
 
 /**
@@ -57,13 +57,13 @@ void run_exit_checker(char *prompt_text)
  **/
 int run_check_cmd_exists(char **cmd)
 {
-    if ((access(cmd[0], F_OK) != 0))
-    {
-        perror("command not found");
-        return (1);
-    }
-    
-    return (0);
+	if ((access(cmd[0], F_OK) != 0))
+	{
+		perror("command not found");
+		return (1);
+	}
+	
+	return (0);
 }
 
 
@@ -74,17 +74,17 @@ int run_check_cmd_exists(char **cmd)
  * Return: nothing
  **/
 void runner(char **cmd){
-    
-    char *param = (*(cmd + 1));
-    char *argv[4];
+	
+	char *param = (*(cmd + 1));
+	char *argv[4];
 
-    argv[0] = cmd[0];
-    argv[1] = param;
-    argv[2] = NULL;
-    argv[3] = NULL;
-    
-    if (execve(argv[0], argv, NULL) == -1)
-    {
-       perror("Error executing command"); 
-    }
+	argv[0] = cmd[0];
+	argv[1] = param;
+	argv[2] = NULL;
+	argv[3] = NULL;
+	
+	if (execve(argv[0], argv, NULL) == -1)
+	{
+	   perror("Error executing command"); 
+	}
 }

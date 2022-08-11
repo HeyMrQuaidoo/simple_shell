@@ -18,15 +18,15 @@ char *read_prompt(void)
 		if (feof(stdin))
 		{
 			exit(0);
-        }
-        else
-        {
-            perror("Failed to read prompt line");
-            exit(1);
-        }
-    }
-    
-    return line;
+		}
+		else
+		{
+			perror("Failed to read prompt line");
+			exit(1);
+		}
+	}
+	
+	return line;
 }
 
 /**
@@ -37,24 +37,24 @@ char *read_prompt(void)
  **/
 char **tokenize(char *readline)
 {
-    int position = 0;
-    char *get_token;
-    int buffer_size = TOKEN_BUFFER_SIZE;
-    char **tokens = malloc(buffer_size * sizeof(char*));
-    
-    check_alloc_error(tokens);
-    get_token = strtok(readline, TOKEN_DELIMITER);
-    
-    while (get_token != NULL)
-    {
-        tokens[position] = get_token;
-        position++;
-        
-        tokens = check_realloc(position, buffer_size, tokens);
-        get_token = strtok(NULL, TOKEN_DELIMITER);
-    }
-    tokens[position] = NULL;
-    return tokens;
+	int position = 0;
+	char *get_token;
+	int buffer_size = TOKEN_BUFFER_SIZE;
+	char **tokens = malloc(buffer_size * sizeof(char*));
+	
+	check_alloc_error(tokens);
+	get_token = strtok(readline, TOKEN_DELIMITER);
+	
+	while (get_token != NULL)
+	{
+		tokens[position] = get_token;
+		position++;
+		
+		tokens = check_realloc(position, buffer_size, tokens);
+		get_token = strtok(NULL, TOKEN_DELIMITER);
+	}
+	tokens[position] = NULL;
+	return tokens;
 } 
 
 /**
@@ -67,13 +67,13 @@ char **tokenize(char *readline)
  **/
 char **check_realloc(int position, int buffer_size, char **tokens)
 {
-    if (position >= buffer_size) {
-        buffer_size += TOKEN_BUFFER_SIZE;
-        tokens = realloc(tokens, buffer_size * sizeof(char*));
-        check_alloc_error(tokens);
-    }
+	if (position >= buffer_size) {
+		buffer_size += TOKEN_BUFFER_SIZE;
+		tokens = realloc(tokens, buffer_size * sizeof(char*));
+		check_alloc_error(tokens);
+	}
 
-    return (tokens);
+	return (tokens);
 }
 
 /**
@@ -84,8 +84,8 @@ char **check_realloc(int position, int buffer_size, char **tokens)
  **/
 void check_alloc_error(char **token)
 {
-    if (!token) {
-        fprintf(stderr, "Failed to allocate memory!\n");
-        exit(EXIT_FAILURE);
-    }
+	if (!token) {
+		fprintf(stderr, "Failed to allocate memory!\n");
+		exit(EXIT_FAILURE);
+	}
 }

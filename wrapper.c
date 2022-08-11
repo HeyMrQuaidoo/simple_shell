@@ -3,7 +3,7 @@
 /**
  * exec_cmd - Runs shell commands
  * @args: command line arguments
- * 
+ *
  * Return: current pid of shell
  **/
 int exec_cmd(char **args)
@@ -18,7 +18,8 @@ int exec_cmd(char **args)
 
 	run_exit_checker(args[0]);
 
-	if (run_check_cmd_exists(args)){
+	if (run_check_cmd_exists(args))
+	{
 		child_pid = fork();
 
 		if (child_pid < 0)
@@ -39,7 +40,7 @@ int exec_cmd(char **args)
 
 /**
  * run_exit_checker - Checks if shell should exit
- * @args: command line arguments
+ * @prompt_text: command line arguments
  * 
  * Return: exits shell
  **/
@@ -62,7 +63,7 @@ int run_check_cmd_exists(char **cmd)
 		perror("command not found");
 		return (1);
 	}
-	
+
 	return (0);
 }
 
@@ -73,8 +74,8 @@ int run_check_cmd_exists(char **cmd)
  * 
  * Return: nothing
  **/
-void runner(char **cmd){
-	
+ void runner(char **cmd)
+ {
 	char *param = (*(cmd + 1));
 	char *argv[4];
 
@@ -82,9 +83,9 @@ void runner(char **cmd){
 	argv[1] = param;
 	argv[2] = NULL;
 	argv[3] = NULL;
-	
+
 	if (execve(argv[0], argv, NULL) == -1)
 	{
-	   perror("Error executing command"); 
+		perror("Error executing command"); 
 	}
 }

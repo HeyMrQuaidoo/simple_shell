@@ -18,7 +18,8 @@ int exec_cmd(char **args)
 
 	run_exit_checker(args[0]);
 
-	if (run_check_cmd_exists(args) == 0){
+	if (run_check_cmd_exists(args) == 0)
+	{
 		child_pid = fork();
 
 		if (child_pid < 0)
@@ -85,6 +86,6 @@ void runner(char **cmd)
 
 	if (execve(argv[0], argv, NULL) == -1)
 	{
-	   perror("Error executing command");
+		perror("Error executing command");
 	}
 }

@@ -41,10 +41,10 @@ char **tokenize(char *readline)
 	char *get_token;
 	int buffer_size = TOKEN_BUFFER_SIZE;
 	char **tokens = malloc(buffer_size * sizeof(char*));
-	
+
 	check_alloc_error(tokens);
 	get_token = strtok(readline, TOKEN_DELIMITER);
-	
+
 	while (get_token != NULL)
 	{
 		tokens[position] = get_token;
@@ -62,7 +62,7 @@ char **tokenize(char *readline)
  * @position: current pointer to cursor of token
  * @buffer_size: current buffer size
  * @tokens: current token string
- * 
+ *
  * Return: tokens
  **/
 char **check_realloc(int position, int buffer_size, char **tokens)

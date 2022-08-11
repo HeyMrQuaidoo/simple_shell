@@ -39,13 +39,8 @@ int exec_cmd(char **args)
 
 /**
  * run_exit_checker - Checks if shell should exit
-<<<<<<< HEAD
- * @args: command line arguments
- * 
-=======
  * @prompt_text: command line arguments
  *
->>>>>>> ef718c0adb8805d3cd64db44ba6078eebd28525b
  * Return: exits shell
  **/
 void run_exit_checker(char *prompt_text)
@@ -78,9 +73,8 @@ int run_check_cmd_exists(char **cmd)
  *
  * Return: nothing
  **/
-<<<<<<< HEAD
-void runner(char **cmd){
-    
+void runner(char **cmd)
+{
     char *param = (*(cmd + 1));
     char *argv[4];
 
@@ -94,20 +88,3 @@ void runner(char **cmd){
        perror("Error executing command"); 
     }
 }
-=======
-void runner(char **cmd)
-{
-	char *param = (*(cmd + 1));
-	char *argv[4];
-
-	argv[0] = cmd[0];
-	argv[1] = param;
-	argv[2] = NULL;
-	argv[3] = NULL;
-
-	if (execve(argv[0], argv, NULL) == -1)
-	{
-		perror("Error executing command");
-	}
-}
->>>>>>> ef718c0adb8805d3cd64db44ba6078eebd28525b
